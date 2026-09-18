@@ -17,636 +17,726 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #EEF1EA;
-    --bg-raised: #FFFFFF;
-    --ink: #1C2B2A;
-    --ink-soft: #5B6B67;
-    --accent: #C97A3D;
-    --accent-ink: #FFFFFF;
-    --ring-track: #DDE3D8;
-    --line: #D8DED2;
-    --danger: #B5533C;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #101A18;
-      --bg-raised: #17221F;
-      --ink: #ECEFE8;
-      --ink-soft: #9AABA4;
-      --accent: #E2984B;
-      --accent-ink: #17221F;
-      --ring-track: #263531;
-      --line: #29382F;
-      --danger: #E48468;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #101A18;
-    --bg-raised: #17221F;
-    --ink: #ECEFE8;
-    --ink-soft: #9AABA4;
-    --accent: #E2984B;
-    --accent-ink: #17221F;
-    --ring-track: #263531;
-    --line: #29382F;
-    --danger: #E48468;
-  }
+:root {
+--bg: #EEF1EA;
+--bg-raised: #FFFFFF;
+--ink: #1C2B2A;
+--ink-soft: #5B6B67;
+--accent: #C97A3D;
+--accent-ink: #FFFFFF;
+--ring-track: #DDE3D8;
+--line: #D8DED2;
+--danger: #B5533C;
+}
+@media (prefers-color-scheme: dark) {
+:root:not([data-theme="light"]) {
+--bg: #101A18;
+--bg-raised: #17221F;
+--ink: #ECEFE8;
+--ink-soft: #9AABA4;
+--accent: #E2984B;
+--accent-ink: #17221F;
+--ring-track: #263531;
+--line: #29382F;
+--danger: #E48468;
+}
+}
+:root[data-theme="dark"] {
+--bg: #101A18;
+--bg-raised: #17221F;
+--ink: #ECEFE8;
+--ink-soft: #9AABA4;
+--accent: #E2984B;
+--accent-ink: #17221F;
+--ring-track: #263531;
+--line: #29382F;
+--danger: #E48468;
+}
 
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
-    -webkit-tap-highlight-color: transparent;
-  }
-  body {
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    justify-content: center;
-    padding: 32px 20px 48px;
-    padding-bottom: max(48px, env(safe-area-inset-bottom));
-  }
-  .app {
-    width: 100%;
-    max-width: 420px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 28px;
-  }
+* { box-sizing: border-box; }
+html, body {
+margin: 0;
+padding: 0;
+background: var(--bg);
+color: var(--ink);
+font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+-webkit-tap-highlight-color: transparent;
+}
+body {
+min-height: 100vh;
+min-height: 100dvh;
+display: flex;
+justify-content: center;
+padding: 32px 20px 48px;
+padding-bottom: max(48px, env(safe-area-inset-bottom));
+}
+.app {
+width: 100%;
+max-width: 420px;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 28px;
+}
 
-  .eyebrow {
-    font-size: 13px;
-    color: var(--ink-soft);
-    letter-spacing: 0.02em;
-    margin: 0;
-  }
+.eyebrow {
+font-size: 13px;
+color: var(--ink-soft);
+letter-spacing: 0.02em;
+margin: 0;
+}
 
-  .dial-wrap {
-    position: relative;
-    width: min(76vw, 280px);
-    height: min(76vw, 280px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .dial-wrap svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
-  .dial-wrap circle.track { fill: none; stroke: var(--ring-track); stroke-width: 10; }
-  .dial-wrap circle.progress {
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 10;
-    stroke-linecap: round;
-    transition: stroke-dashoffset 0.4s ease;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .dial-wrap circle.progress { transition: none; }
-  }
-  .dial-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-  .count {
-    font-family: "Fraunces", Georgia, serif;
-    font-size: 64px;
-    font-weight: 500;
-    line-height: 1;
-    font-optical-sizing: auto;
-  }
-  .count-target { font-size: 20px; color: var(--ink-soft); font-family: "Fraunces", Georgia, serif; }
-  .status-label { font-size: 13px; color: var(--ink-soft); min-height: 18px; text-align: center; }
+.dial-wrap {
+position: relative;
+width: min(76vw, 280px);
+height: min(76vw, 280px);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.dial-wrap svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.dial-wrap circle.track { fill: none; stroke: var(--ring-track); stroke-width: 10; }
+.dial-wrap circle.progress {
+fill: none;
+stroke: var(--accent);
+stroke-width: 10;
+stroke-linecap: round;
+transition: stroke-dashoffset 0.4s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+.dial-wrap circle.progress { transition: none; }
+}
+.dial-center {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 4px;
+}
+.count {
+font-family: "Fraunces", Georgia, serif;
+font-size: 64px;
+font-weight: 500;
+line-height: 1;
+font-optical-sizing: auto;
+}
+.count-target { font-size: 20px; color: var(--ink-soft); font-family: "Fraunces", Georgia, serif; }
+.status-label { font-size: 13px; color: var(--ink-soft); min-height: 18px; text-align: center; }
 
-  .primary-btn {
-    appearance: none;
-    border: none;
-    border-radius: 999px;
-    background: var(--accent);
-    color: var(--accent-ink);
-    font-size: 17px;
-    font-weight: 600;
-    padding: 18px 40px;
-    width: 100%;
-    max-width: 320px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  .primary-btn:focus-visible, .icon-btn:focus-visible, .stepper button:focus-visible, .text-btn:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
-  .primary-btn:disabled { opacity: 0.45; cursor: not-allowed; }
-  .primary-btn.recording { background: var(--danger); }
+.primary-btn {
+appearance: none;
+border: none;
+border-radius: 999px;
+background: var(--accent);
+color: var(--accent-ink);
+font-size: 17px;
+font-weight: 600;
+padding: 18px 40px;
+width: 100%;
+max-width: 320px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+}
+.primary-btn:focus-visible, .icon-btn:focus-visible, .stepper button:focus-visible, .text-btn:focus-visible {
+outline: 2px solid var(--accent);
+outline-offset: 3px;
+}
+.primary-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.primary-btn.recording { background: var(--danger); }
 
-  .primary-btn.record-btn {
-    background: var(--bg-raised);
-    color: var(--ink);
-    border: 1px solid var(--line);
-  }
-  .primary-btn.record-btn.recording {
-    background: var(--danger);
-    color: var(--accent-ink);
-    border-color: var(--danger);
-    animation: pulse 1.6s ease-in-out infinite;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .primary-btn.record-btn.recording { animation: none; }
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-  }
+.primary-btn.record-btn {
+background: var(--bg-raised);
+color: var(--ink);
+border: 1px solid var(--line);
+}
+.primary-btn.record-btn.recording {
+background: var(--danger);
+color: var(--accent-ink);
+border-color: var(--danger);
+animation: pulse 1.6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+.primary-btn.record-btn.recording { animation: none; }
+}
+@keyframes pulse {
+0%, 100% { opacity: 1; }
+50% { opacity: 0.7; }
+}
 
-  .secondary-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 18px;
-  }
-  .text-btn {
-    appearance: none;
-    background: none;
-    border: none;
-    color: var(--ink-soft);
-    font-size: 14px;
-    cursor: pointer;
-    padding: 6px 2px;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .text-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+/* ダウンロードボタン */
+.primary-btn.download-btn {
+background: var(--bg-raised);
+color: var(--accent);
+border: 1.5px solid var(--accent);
+font-size: 15px;
+padding: 14px 32px;
+}
+.primary-btn.download-btn:hover {
+background: var(--accent);
+color: var(--accent-ink);
+}
 
-  .card {
-    width: 100%;
-    background: var(--bg-raised);
-    border: 1px solid var(--line);
-    border-radius: 20px;
-    padding: 20px 22px;
-  }
-  .card h2 {
-    font-size: 12px;
-    margin: 0 0 10px;
-    color: var(--ink-soft);
-    font-weight: 600;
-  }
-  .affirmation-text {
-    width: 100%;
-    resize: vertical;
-    min-height: 96px;
-    border: none;
-    background: transparent;
-    color: var(--ink);
-    font-size: 16px;
-    line-height: 1.7;
-    font-family: inherit;
-    padding: 0;
-  }
-  .affirmation-text:focus-visible { outline: none; }
+.secondary-row {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+gap: 18px;
+}
+.text-btn {
+appearance: none;
+background: none;
+border: none;
+color: var(--ink-soft);
+font-size: 14px;
+cursor: pointer;
+padding: 6px 2px;
+text-decoration: underline;
+text-underline-offset: 3px;
+}
+.text-btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
-  .stepper {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-top: 4px;
-  }
-  .stepper button {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    background: var(--bg);
-    color: var(--ink);
-    font-size: 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .stepper span { font-size: 15px; min-width: 70px; text-align: center; }
+.card {
+width: 100%;
+background: var(--bg-raised);
+border: 1px solid var(--line);
+border-radius: 20px;
+padding: 20px 22px;
+}
+.card h2 {
+font-size: 12px;
+margin: 0 0 10px;
+color: var(--ink-soft);
+font-weight: 600;
+}
+.affirmation-text {
+width: 100%;
+resize: vertical;
+min-height: 96px;
+border: none;
+background: transparent;
+color: var(--ink);
+font-size: 16px;
+line-height: 1.7;
+font-family: inherit;
+padding: 0;
+}
+.affirmation-text:focus-visible { outline: none; }
 
-  .empty-state {
-    text-align: center;
-    color: var(--ink-soft);
-    font-size: 14px;
-    line-height: 1.7;
-  }
+.stepper {
+display: flex;
+align-items: center;
+gap: 14px;
+margin-top: 4px;
+}
+.stepper button {
+width: 34px;
+height: 34px;
+border-radius: 50%;
+border: 1px solid var(--line);
+background: var(--bg);
+color: var(--ink);
+font-size: 18px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.stepper span { font-size: 15px; min-width: 70px; text-align: center; }
 
-  .sr-only {
-    position: absolute;
-    width: 1px; height: 1px;
-    padding: 0; margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    white-space: nowrap; border: 0;
-  }
+.empty-state {
+text-align: center;
+color: var(--ink-soft);
+font-size: 14px;
+line-height: 1.7;
+}
+
+.sr-only {
+position: absolute;
+width: 1px; height: 1px;
+padding: 0; margin: -1px;
+overflow: hidden;
+clip: rect(0,0,0,0);
+white-space: nowrap; border: 0;
+}
 </style>
 </head>
 <body>
 <div class="app">
-  <p class="eyebrow">朝の宣言</p>
+<p class="eyebrow">朝の宣言</p>
 
-  <div class="dial-wrap">
-    <svg viewBox="0 0 100 100" aria-hidden="true">
-      <circle class="track" cx="50" cy="50" r="44"></circle>
-      <circle class="progress" id="ring" cx="50" cy="50" r="44"
-        stroke-dasharray="276.5" stroke-dashoffset="276.5"></circle>
-    </svg>
-    <div class="dial-center">
-      <div class="count" id="countDisplay">0</div>
-      <div class="count-target" id="targetDisplay">/ 10</div>
-    </div>
-  </div>
+<div class="dial-wrap">
+<svg viewBox="0 0 100 100" aria-hidden="true">
+<circle class="track" cx="50" cy="50" r="44"></circle>
+<circle class="progress" id="ring" cx="50" cy="50" r="44"
+stroke-dasharray="276.5" stroke-dashoffset="276.5"></circle>
+</svg>
+<div class="dial-center">
+<div class="count" id="countDisplay">0</div>
+<div class="count-target" id="targetDisplay">/ 10</div>
+</div>
+</div>
 
-  <div aria-live="polite" class="status-label" id="statusLabel"></div>
+<div aria-live="polite" class="status-label" id="statusLabel"></div>
 
-  <button class="primary-btn" id="playBtn" disabled>
-    <span id="playBtnLabel">再生する</span>
-  </button>
+<button class="primary-btn" id="playBtn" disabled>
+<span id="playBtnLabel">再生する</span>
+</button>
 
-  <button class="primary-btn record-btn" id="micBtn">
-    <span id="micBtnLabel">🎙 その場で録音する</span>
-  </button>
+<button class="primary-btn record-btn" id="micBtn">
+<span id="micBtnLabel">🎙 その場で録音する</span>
+</button>
 
-  <div class="secondary-row">
-    <button class="text-btn" id="resetBtn" style="display:none;">回数をリセット</button>
-    <button class="text-btn" id="fileBtn">音声ファイルから選ぶ</button>
-    <input type="file" id="fileInput" accept="audio/*" class="sr-only">
-  </div>
-  <p class="empty-state" id="howTo">「その場で録音する」をタップしてマイクで宣言を録音するか、あらかじめ録音した音声ファイルを選んでください。</p>
+<!-- ダウンロードボタン（音声読み込み後に表示） -->
+<button class="primary-btn download-btn" id="downloadBtn" style="display:none;">
+⬇ 録音をダウンロード
+</button>
 
-  <div class="card">
-    <h2>ことば</h2>
-    <textarea class="affirmation-text" id="affirmationText" placeholder="ここに宣言の文章を書いておくと、散歩中に見返せます。">私は、周りに笑顔を与える人です。
+<div class="secondary-row">
+<button class="text-btn" id="resetBtn" style="display:none;">回数をリセット</button>
+<button class="text-btn" id="fileBtn">音声ファイルから選ぶ</button>
+<input type="file" id="fileInput" accept="audio/*" class="sr-only">
+</div>
+<p class="empty-state" id="howTo">「その場で録音する」をタップしてマイクで宣言を録音するか、あらかじめ録音した音声ファイルを選んでください。</p>
+
+<div class="card">
+<h2>ことば</h2>
+<textarea class="affirmation-text" id="affirmationText" placeholder="ここに宣言の文章を書いておくと、散歩中に見返せます。">私は、周りに笑顔を与える人です。
 私は、精神的にも経済的にも余裕のある父親であり、夫です。
 私は、子供たちが誇れる父親です。</textarea>
-  </div>
+</div>
 
-  <div class="card" id="settingsCard">
-    <h2>くり返す回数</h2>
-    <div class="stepper">
-      <button id="decBtn" aria-label="回数を減らす">−</button>
-      <span id="targetLabel">10 回</span>
-      <button id="incBtn" aria-label="回数を増やす">＋</button>
-    </div>
-  </div>
+<div class="card" id="settingsCard">
+<h2>くり返す回数</h2>
+<div class="stepper">
+<button id="decBtn" aria-label="回数を減らす">−</button>
+<span id="targetLabel">10 回</span>
+<button id="incBtn" aria-label="回数を増やす">＋</button>
+</div>
+</div>
 </div>
 
 <audio id="player" style="display:none;" playsinline></audio>
 
 <script>
 (function () {
-  const STORAGE_KEY = 'affirmation_audio_v1';
-  const TARGET_KEY = 'affirmation_target_v1';
-  const TEXT_KEY = 'affirmation_text_v1';
+const DB_NAME = 'affirmation_db';
+const DB_VERSION = 1;
+const STORE_NAME = 'audio';
+const AUDIO_KEY = 'main';
+const TARGET_KEY = 'affirmation_target_v1';
+const TEXT_KEY = 'affirmation_text_v1';
 
-  const playBtn = document.getElementById('playBtn');
-  const playBtnLabel = document.getElementById('playBtnLabel');
-  const micBtn = document.getElementById('micBtn');
-  const micBtnLabel = document.getElementById('micBtnLabel');
-  const fileBtn = document.getElementById('fileBtn');
-  const resetBtn = document.getElementById('resetBtn');
-  const countDisplay = document.getElementById('countDisplay');
-  const targetDisplay = document.getElementById('targetDisplay');
-  const statusLabel = document.getElementById('statusLabel');
-  const ring = document.getElementById('ring');
-  const player = document.getElementById('player');
-  const affirmationText = document.getElementById('affirmationText');
-  const decBtn = document.getElementById('decBtn');
-  const incBtn = document.getElementById('incBtn');
-  const targetLabel = document.getElementById('targetLabel');
+const playBtn = document.getElementById('playBtn');
+const playBtnLabel = document.getElementById('playBtnLabel');
+const micBtn = document.getElementById('micBtn');
+const micBtnLabel = document.getElementById('micBtnLabel');
+const fileBtn = document.getElementById('fileBtn');
+const downloadBtn = document.getElementById('downloadBtn');
+const resetBtn = document.getElementById('resetBtn');
+const countDisplay = document.getElementById('countDisplay');
+const targetDisplay = document.getElementById('targetDisplay');
+const statusLabel = document.getElementById('statusLabel');
+const ring = document.getElementById('ring');
+const player = document.getElementById('player');
+const affirmationText = document.getElementById('affirmationText');
+const decBtn = document.getElementById('decBtn');
+const incBtn = document.getElementById('incBtn');
+const targetLabel = document.getElementById('targetLabel');
+const fileInput = document.getElementById('fileInput');
+const howTo = document.getElementById('howTo');
 
-  const RING_CIRCUMFERENCE = 276.5;
+const RING_CIRCUMFERENCE = 276.5;
 
-  const fileInput = document.getElementById('fileInput');
-  const howTo = document.getElementById('howTo');
+let target = 10;
+let count = 0;
+let isPlaying = false;
+let stopRequested = false;
+let currentBlob = null; // ダウンロード用にblobを保持
 
-  let target = 10;
-  let count = 0;
-  let isPlaying = false;
-  let stopRequested = false;
+// ---- IndexedDB ----
+let db = null;
 
-  function safeGet(key) {
-    try { return localStorage.getItem(key); } catch (e) { return null; }
-  }
-  function safeSet(key, value) {
-    try { localStorage.setItem(key, value); return true; } catch (e) { return false; }
-  }
+function openDB() {
+return new Promise(function (resolve, reject) {
+const req = indexedDB.open(DB_NAME, DB_VERSION);
+req.onupgradeneeded = function (e) {
+e.target.result.createObjectStore(STORE_NAME);
+};
+req.onsuccess = function (e) { resolve(e.target.result); };
+req.onerror = function () { reject(req.error); };
+});
+}
 
-  function loadState() {
-    const savedTarget = safeGet(TARGET_KEY);
-    if (savedTarget) target = parseInt(savedTarget, 10) || 10;
-    targetDisplay.textContent = '/ ' + target;
-    targetLabel.textContent = target + ' 回';
+function saveAudioBlob(blob) {
+return new Promise(function (resolve, reject) {
+if (!db) { reject(new Error('DB not ready')); return; }
+const tx = db.transaction(STORE_NAME, 'readwrite');
+tx.objectStore(STORE_NAME).put(blob, AUDIO_KEY);
+tx.oncomplete = function () { resolve(); };
+tx.onerror = function () { reject(tx.error); };
+});
+}
 
-    const savedText = safeGet(TEXT_KEY);
-    if (savedText) affirmationText.value = savedText;
+function loadAudioBlob() {
+return new Promise(function (resolve, reject) {
+if (!db) { resolve(null); return; }
+const tx = db.transaction(STORE_NAME, 'readonly');
+const req = tx.objectStore(STORE_NAME).get(AUDIO_KEY);
+req.onsuccess = function () { resolve(req.result || null); };
+req.onerror = function () { reject(req.error); };
+});
+}
 
-    const savedAudio = safeGet(STORAGE_KEY);
-    if (savedAudio) {
-      player.src = savedAudio;
-      playBtn.disabled = false;
-      statusLabel.textContent = '音声を読み込み済みです';
-      resetBtn.style.display = 'inline';
-      howTo.style.display = 'none';
-      fileBtn.textContent = '音声を選びなおす';
-    } else {
-      statusLabel.textContent = 'まだ音声がありません';
-    }
-  }
+// ---- localStorage helpers (テキスト・設定のみ) ----
+function safeGet(key) {
+try { return localStorage.getItem(key); } catch (e) { return null; }
+}
+function safeSet(key, value) {
+try { localStorage.setItem(key, value); return true; } catch (e) { return false; }
+}
 
-  affirmationText.addEventListener('input', function () {
-    safeSet(TEXT_KEY, affirmationText.value);
-  });
+// ---- 初期化 ----
+async function init() {
+try {
+db = await openDB();
+} catch (e) {
+db = null;
+}
 
-  function updateRing() {
-    const ratio = Math.min(count / target, 1);
-    const offset = RING_CIRCUMFERENCE * (1 - ratio);
-    ring.setAttribute('stroke-dashoffset', offset);
-    countDisplay.textContent = count;
-  }
+const savedTarget = safeGet(TARGET_KEY);
+if (savedTarget) target = parseInt(savedTarget, 10) || 10;
+targetDisplay.textContent = '/ ' + target;
+targetLabel.textContent = target + ' 回';
 
-  function resetCount() {
-    count = 0;
-    updateRing();
-    statusLabel.textContent = '録音ずみです';
-    resetBtn.style.display = 'none';
-  }
+const savedText = safeGet(TEXT_KEY);
+if (savedText) affirmationText.value = savedText;
 
-  decBtn.addEventListener('click', function () {
-    target = Math.max(3, target - 1);
-    targetDisplay.textContent = '/ ' + target;
-    targetLabel.textContent = target + ' 回';
-    safeSet(TARGET_KEY, String(target));
-    if (!isPlaying) { count = Math.min(count, target); updateRing(); }
-  });
-  incBtn.addEventListener('click', function () {
-    target = Math.min(30, target + 1);
-    targetDisplay.textContent = '/ ' + target;
-    targetLabel.textContent = target + ' 回';
-    safeSet(TARGET_KEY, String(target));
-    updateRing();
-  });
+try {
+const blob = await loadAudioBlob();
+if (blob) {
+currentBlob = blob;
+const url = URL.createObjectURL(blob);
+player.src = url;
+playBtn.disabled = false;
+statusLabel.textContent = '音声を読み込み済みです';
+resetBtn.style.display = 'inline';
+howTo.style.display = 'none';
+fileBtn.textContent = '音声を選びなおす';
+downloadBtn.style.display = 'flex';
+}
+} catch (e) {
+statusLabel.textContent = 'まだ音声がありません';
+}
 
-  function loadAudioFromBlob(blob, sourceLabel) {
-    statusLabel.textContent = '読み込んでいます…';
-    const reader = new FileReader();
-    reader.onload = function () {
-      const dataUrl = reader.result;
-      const ok = safeSet(STORAGE_KEY, dataUrl);
-      if (ok) {
-        player.src = dataUrl;
-        playBtn.disabled = false;
-        statusLabel.textContent = sourceLabel + 'を読み込みました';
-        howTo.style.display = 'none';
-        fileBtn.textContent = '音声を選びなおす';
-        resetCount();
-      } else {
-        statusLabel.textContent = '保存に失敗しました（音声が大きすぎる可能性があります。短く録り直してください）';
-      }
-    };
-    reader.onerror = function () {
-      statusLabel.textContent = '読み込みに失敗しました';
-    };
-    reader.readAsDataURL(blob);
-  }
+updateRing();
+}
 
-  // ---- File select (fallback) ----
-  fileBtn.addEventListener('click', function () {
-    if (isPlaying || isRecording) return;
-    fileInput.click();
-  });
+affirmationText.addEventListener('input', function () {
+safeSet(TEXT_KEY, affirmationText.value);
+});
 
-  fileInput.addEventListener('change', function () {
-    const file = fileInput.files && fileInput.files[0];
-    if (!file) return;
-    loadAudioFromBlob(file, '音声ファイル');
-  });
+function updateRing() {
+const ratio = Math.min(count / target, 1);
+const offset = RING_CIRCUMFERENCE * (1 - ratio);
+ring.setAttribute('stroke-dashoffset', offset);
+countDisplay.textContent = count;
+}
 
-  // ---- In-app mic recording ----
-  let mediaRecorder = null;
-  let mediaStream = null;
-  let recordedChunks = [];
-  let isRecording = false;
-  let recordTimerId = null;
-  let recordStartedAt = 0;
+function resetCount() {
+count = 0;
+updateRing();
+statusLabel.textContent = '録音ずみです';
+resetBtn.style.display = 'none';
+}
 
-  const canRecord = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
-  if (!canRecord) {
-    micBtn.disabled = true;
-    micBtnLabel.textContent = 'この端末では録音できません';
-  }
+decBtn.addEventListener('click', function () {
+target = Math.max(3, target - 1);
+targetDisplay.textContent = '/ ' + target;
+targetLabel.textContent = target + ' 回';
+safeSet(TARGET_KEY, String(target));
+if (!isPlaying) { count = Math.min(count, target); updateRing(); }
+});
+incBtn.addEventListener('click', function () {
+target = Math.min(30, target + 1);
+targetDisplay.textContent = '/ ' + target;
+targetLabel.textContent = target + ' 回';
+safeSet(TARGET_KEY, String(target));
+updateRing();
+});
 
-  function pickMimeType() {
-    const candidates = ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus'];
-    for (const type of candidates) {
-      if (window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(type)) {
-        return type;
-      }
-    }
-    return '';
-  }
+async function loadAudioFromBlob(blob, sourceLabel) {
+statusLabel.textContent = '保存しています…';
+try {
+await saveAudioBlob(blob);
+currentBlob = blob;
+const url = URL.createObjectURL(blob);
+player.src = url;
+playBtn.disabled = false;
+statusLabel.textContent = sourceLabel + 'を保存しました';
+howTo.style.display = 'none';
+fileBtn.textContent = '音声を選びなおす';
+downloadBtn.style.display = 'flex';
+resetCount();
+} catch (e) {
+// IndexedDB失敗時はObjectURLで一時再生のみ（保存なし）
+currentBlob = blob;
+const url = URL.createObjectURL(blob);
+player.src = url;
+playBtn.disabled = false;
+statusLabel.textContent = sourceLabel + '（今回のみ・保存できませんでした）';
+howTo.style.display = 'none';
+downloadBtn.style.display = 'flex';
+resetCount();
+}
+}
 
-  function formatElapsed(ms) {
-    const s = Math.floor(ms / 1000);
-    const mm = String(Math.floor(s / 60)).padStart(2, '0');
-    const ss = String(s % 60).padStart(2, '0');
-    return mm + ':' + ss;
-  }
+// ---- ダウンロード ----
+downloadBtn.addEventListener('click', function () {
+if (!currentBlob) return;
+const ext = currentBlob.type.includes('mp4') ? 'm4a'
+: currentBlob.type.includes('ogg') ? 'ogg'
+: 'webm';
+const url = URL.createObjectURL(currentBlob);
+const a = document.createElement('a');
+a.href = url;
+a.download = '朝の宣言_' + new Date().toISOString().slice(0, 10) + '.' + ext;
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+setTimeout(function () { URL.revokeObjectURL(url); }, 10000);
+statusLabel.textContent = 'ダウンロードを開始しました';
+});
 
-  function stopRecordTimer() {
-    if (recordTimerId) { clearInterval(recordTimerId); recordTimerId = null; }
-  }
+// ---- File select ----
+fileBtn.addEventListener('click', function () {
+if (isPlaying || isRecording) return;
+fileInput.click();
+});
 
-  async function startRecording() {
-    if (isPlaying) return;
-    try {
-      mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    } catch (e) {
-      statusLabel.textContent = 'マイクを使用できませんでした。設定でマイクの許可を確認するか、音声ファイルを選んでください。';
-      return;
-    }
-    recordedChunks = [];
-    const mimeType = pickMimeType();
-    try {
-      mediaRecorder = mimeType ? new MediaRecorder(mediaStream, { mimeType }) : new MediaRecorder(mediaStream);
-    } catch (e) {
-      mediaRecorder = new MediaRecorder(mediaStream);
-    }
+fileInput.addEventListener('change', function () {
+const file = fileInput.files && fileInput.files[0];
+if (!file) return;
+loadAudioFromBlob(file, '音声ファイル');
+});
 
-    mediaRecorder.addEventListener('dataavailable', function (e) {
-      if (e.data && e.data.size > 0) recordedChunks.push(e.data);
-    });
+// ---- In-app mic recording ----
+let mediaRecorder = null;
+let mediaStream = null;
+let recordedChunks = [];
+let isRecording = false;
+let recordTimerId = null;
+let recordStartedAt = 0;
 
-    mediaRecorder.addEventListener('stop', function () {
-      mediaStream.getTracks().forEach(function (t) { t.stop(); });
-      mediaStream = null;
-      stopRecordTimer();
-      isRecording = false;
-      micBtn.classList.remove('recording');
-      micBtnLabel.textContent = '🎙 その場で録音する';
-      fileBtn.disabled = false;
+const canRecord = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+if (!canRecord) {
+micBtn.disabled = true;
+micBtnLabel.textContent = 'この端末では録音できません';
+}
 
-      if (recordedChunks.length === 0) {
-        statusLabel.textContent = '録音されませんでした';
-        return;
-      }
-      const blob = new Blob(recordedChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
-      loadAudioFromBlob(blob, '録音した音声');
-    });
+function pickMimeType() {
+const candidates = ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus'];
+for (const type of candidates) {
+if (window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(type)) {
+return type;
+}
+}
+return '';
+}
 
-    mediaRecorder.start();
-    isRecording = true;
-    recordStartedAt = Date.now();
-    micBtn.classList.add('recording');
-    micBtnLabel.textContent = '■ 停止する（録音中… 00:00）';
-    fileBtn.disabled = true;
-    statusLabel.textContent = '録音中です。宣言を読み上げてください。';
+function formatElapsed(ms) {
+const s = Math.floor(ms / 1000);
+const mm = String(Math.floor(s / 60)).padStart(2, '0');
+const ss = String(s % 60).padStart(2, '0');
+return mm + ':' + ss;
+}
 
-    recordTimerId = setInterval(function () {
-      micBtnLabel.textContent = '■ 停止する（録音中… ' + formatElapsed(Date.now() - recordStartedAt) + '）';
-    }, 500);
-  }
+function stopRecordTimer() {
+if (recordTimerId) { clearInterval(recordTimerId); recordTimerId = null; }
+}
 
-  function stopRecording() {
-    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-      mediaRecorder.stop();
-    }
-  }
+async function startRecording() {
+if (isPlaying) return;
+try {
+mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+} catch (e) {
+statusLabel.textContent = 'マイクを使用できませんでした。設定でマイクの許可を確認するか、音声ファイルを選んでください。';
+return;
+}
+recordedChunks = [];
+const mimeType = pickMimeType();
+try {
+mediaRecorder = mimeType ? new MediaRecorder(mediaStream, { mimeType }) : new MediaRecorder(mediaStream);
+} catch (e) {
+mediaRecorder = new MediaRecorder(mediaStream);
+}
 
-  micBtn.addEventListener('click', function () {
-    if (!canRecord) return;
-    if (isRecording) {
-      stopRecording();
-    } else {
-      startRecording();
-    }
-  });
+mediaRecorder.addEventListener('dataavailable', function (e) {
+if (e.data && e.data.size > 0) recordedChunks.push(e.data);
+});
 
-  // ---- Wake Lock (keep screen alive while playing, when app is foregrounded) ----
-  let wakeLock = null;
+mediaRecorder.addEventListener('stop', function () {
+mediaStream.getTracks().forEach(function (t) { t.stop(); });
+mediaStream = null;
+stopRecordTimer();
+isRecording = false;
+micBtn.classList.remove('recording');
+micBtnLabel.textContent = '🎙 その場で録音する';
+fileBtn.disabled = false;
 
-  async function requestWakeLock() {
-    if (!('wakeLock' in navigator)) return;
-    try {
-      wakeLock = await navigator.wakeLock.request('screen');
-      wakeLock.addEventListener('release', function () { wakeLock = null; });
-    } catch (e) {
-      wakeLock = null;
-    }
-  }
+if (recordedChunks.length === 0) {
+statusLabel.textContent = '録音されませんでした';
+return;
+}
+const blob = new Blob(recordedChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+loadAudioFromBlob(blob, '録音した音声');
+});
 
-  function releaseWakeLock() {
-    if (wakeLock) {
-      wakeLock.release().catch(function () {});
-      wakeLock = null;
-    }
-  }
+mediaRecorder.start();
+isRecording = true;
+recordStartedAt = Date.now();
+micBtn.classList.add('recording');
+micBtnLabel.textContent = '■ 停止する（録音中… 00:00）';
+fileBtn.disabled = true;
+statusLabel.textContent = '録音中です。宣言を読み上げてください。';
 
-  document.addEventListener('visibilitychange', function () {
-    if (document.visibilityState === 'visible' && isPlaying && !wakeLock) {
-      requestWakeLock();
-    }
-  });
+recordTimerId = setInterval(function () {
+micBtnLabel.textContent = '■ 停止する（録音中… ' + formatElapsed(Date.now() - recordStartedAt) + '）';
+}, 500);
+}
 
-  // ---- Media Session (lock screen controls + helps background playback continue) ----
-  function setupMediaSession() {
-    if (!('mediaSession' in navigator)) return;
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: '朝の宣言',
-      artist: '朝の散歩アファメーション',
-      album: '朝の宣言'
-    });
-    navigator.mediaSession.setActionHandler('play', function () {
-      if (!isPlaying) playBtn.click();
-    });
-    navigator.mediaSession.setActionHandler('pause', function () {
-      if (isPlaying) playBtn.click();
-    });
-    navigator.mediaSession.setActionHandler('stop', function () {
-      if (isPlaying) playBtn.click();
-    });
-  }
+function stopRecording() {
+if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+mediaRecorder.stop();
+}
+}
 
-  function updateMediaSessionState() {
-    if ('mediaSession' in navigator) {
-      navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
-    }
-  }
+micBtn.addEventListener('click', function () {
+if (!canRecord) return;
+if (isRecording) {
+stopRecording();
+} else {
+startRecording();
+}
+});
 
-  // ---- Playback ----
-  function setPlayingUI(playing) {
-    isPlaying = playing;
-    playBtnLabel.textContent = playing ? '止める' : (count > 0 && count < target ? '再開する' : '再生する');
-    micBtn.disabled = playing || !canRecord;
-    fileBtn.disabled = playing;
-    decBtn.disabled = playing;
-    incBtn.disabled = playing;
-    updateMediaSessionState();
-    if (playing) {
-      requestWakeLock();
-    } else {
-      releaseWakeLock();
-    }
-  }
+// ---- Wake Lock ----
+let wakeLock = null;
 
-  playBtn.addEventListener('click', function () {
-    if (isPlaying) {
-      stopRequested = true;
-      player.pause();
-      setPlayingUI(false);
-      statusLabel.textContent = '一時停止しました';
-      return;
-    }
-    if (count >= target) resetCount();
-    stopRequested = false;
-    setupMediaSession();
-    setPlayingUI(true);
-    playNext();
-  });
+async function requestWakeLock() {
+if (!('wakeLock' in navigator)) return;
+try {
+wakeLock = await navigator.wakeLock.request('screen');
+wakeLock.addEventListener('release', function () { wakeLock = null; });
+} catch (e) {
+wakeLock = null;
+}
+}
 
-  function playNext() {
-    if (stopRequested) return;
-    if (count >= target) {
-      setPlayingUI(false);
-      statusLabel.textContent = '今日の宣言、完了です';
-      resetBtn.style.display = 'inline';
-      return;
-    }
-    statusLabel.textContent = (count + 1) + ' 回目';
-    player.currentTime = 0;
-    player.play().catch(function () {
-      setPlayingUI(false);
-      statusLabel.textContent = '再生できませんでした';
-    });
-  }
+function releaseWakeLock() {
+if (wakeLock) {
+wakeLock.release().catch(function () {});
+wakeLock = null;
+}
+}
 
-  player.addEventListener('ended', function () {
-    count += 1;
-    updateRing();
-    if (stopRequested) return;
-    setTimeout(playNext, 500);
-  });
+document.addEventListener('visibilitychange', function () {
+if (document.visibilityState === 'visible' && isPlaying && !wakeLock) {
+requestWakeLock();
+}
+});
 
-  resetBtn.addEventListener('click', resetCount);
+// ---- Media Session ----
+function setupMediaSession() {
+if (!('mediaSession' in navigator)) return;
+navigator.mediaSession.metadata = new MediaMetadata({
+title: '朝の宣言',
+artist: '朝の散歩アファメーション',
+album: '朝の宣言'
+});
+navigator.mediaSession.setActionHandler('play', function () {
+if (!isPlaying) playBtn.click();
+});
+navigator.mediaSession.setActionHandler('pause', function () {
+if (isPlaying) playBtn.click();
+});
+navigator.mediaSession.setActionHandler('stop', function () {
+if (isPlaying) playBtn.click();
+});
+}
 
-  // ---- Service worker (PWA offline support) ----
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw.js').catch(function () {});
-    });
-  }
+function updateMediaSessionState() {
+if ('mediaSession' in navigator) {
+navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
+}
+}
 
-  loadState();
-  updateRing();
+// ---- Playback ----
+function setPlayingUI(playing) {
+isPlaying = playing;
+playBtnLabel.textContent = playing ? '止める' : (count > 0 && count < target ? '再開する' : '再生する');
+micBtn.disabled = playing || !canRecord;
+fileBtn.disabled = playing;
+decBtn.disabled = playing;
+incBtn.disabled = playing;
+updateMediaSessionState();
+if (playing) {
+requestWakeLock();
+} else {
+releaseWakeLock();
+}
+}
+
+playBtn.addEventListener('click', function () {
+if (isPlaying) {
+stopRequested = true;
+player.pause();
+setPlayingUI(false);
+statusLabel.textContent = '一時停止しました';
+return;
+}
+if (count >= target) resetCount();
+stopRequested = false;
+setupMediaSession();
+setPlayingUI(true);
+playNext();
+});
+
+function playNext() {
+if (stopRequested) return;
+if (count >= target) {
+setPlayingUI(false);
+statusLabel.textContent = '今日の宣言、完了です';
+resetBtn.style.display = 'inline';
+return;
+}
+statusLabel.textContent = (count + 1) + ' 回目';
+player.currentTime = 0;
+player.play().catch(function () {
+setPlayingUI(false);
+statusLabel.textContent = '再生できませんでした';
+});
+}
+
+player.addEventListener('ended', function () {
+count += 1;
+updateRing();
+if (stopRequested) return;
+setTimeout(playNext, 500);
+});
+
+resetBtn.addEventListener('click', resetCount);
+
+// ---- Service worker ----
+if ('serviceWorker' in navigator) {
+window.addEventListener('load', function () {
+navigator.serviceWorker.register('sw.js').catch(function () {});
+});
+}
+
+init();
 })();
 </script>
 </body>
