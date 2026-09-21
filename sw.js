@@ -1,4 +1,4 @@
-const CACHE_NAME = 'affirmation-player-v2';
+const CACHE_NAME = 'affirmation-player-v3';
 const CORE_ASSETS = [
   './',
   './index.html',

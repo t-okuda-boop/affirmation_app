@@ -52,214 +52,120 @@
 --line: #29382F;
 --danger: #E48468;
 }
-
 * { box-sizing: border-box; }
 html, body {
-margin: 0;
-padding: 0;
+margin: 0; padding: 0;
 background: var(--bg);
 color: var(--ink);
 font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
 -webkit-tap-highlight-color: transparent;
 }
 body {
-min-height: 100vh;
-min-height: 100dvh;
-display: flex;
-justify-content: center;
+min-height: 100vh; min-height: 100dvh;
+display: flex; justify-content: center;
 padding: 32px 20px 48px;
 padding-bottom: max(48px, env(safe-area-inset-bottom));
 }
 .app {
-width: 100%;
-max-width: 420px;
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 28px;
+width: 100%; max-width: 420px;
+display: flex; flex-direction: column; align-items: center; gap: 28px;
 }
-
-.eyebrow {
-font-size: 13px;
-color: var(--ink-soft);
-letter-spacing: 0.02em;
-margin: 0;
-}
-
+.eyebrow { font-size: 13px; color: var(--ink-soft); letter-spacing: 0.02em; margin: 0; }
 .dial-wrap {
 position: relative;
-width: min(76vw, 280px);
-height: min(76vw, 280px);
-display: flex;
-align-items: center;
-justify-content: center;
+width: min(76vw, 280px); height: min(76vw, 280px);
+display: flex; align-items: center; justify-content: center;
 }
 .dial-wrap svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
 .dial-wrap circle.track { fill: none; stroke: var(--ring-track); stroke-width: 10; }
 .dial-wrap circle.progress {
-fill: none;
-stroke: var(--accent);
-stroke-width: 10;
-stroke-linecap: round;
+fill: none; stroke: var(--accent); stroke-width: 10; stroke-linecap: round;
 transition: stroke-dashoffset 0.4s ease;
 }
-@media (prefers-reduced-motion: reduce) {
-.dial-wrap circle.progress { transition: none; }
-}
-.dial-center {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 4px;
-}
-.count {
-font-family: "Fraunces", Georgia, serif;
-font-size: 64px;
-font-weight: 500;
-line-height: 1;
-font-optical-sizing: auto;
-}
+@media (prefers-reduced-motion: reduce) { .dial-wrap circle.progress { transition: none; } }
+.dial-center { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.count { font-family: "Fraunces", Georgia, serif; font-size: 64px; font-weight: 500; line-height: 1; }
 .count-target { font-size: 20px; color: var(--ink-soft); font-family: "Fraunces", Georgia, serif; }
 .status-label { font-size: 13px; color: var(--ink-soft); min-height: 18px; text-align: center; }
-
 .primary-btn {
-appearance: none;
-border: none;
-border-radius: 999px;
-background: var(--accent);
-color: var(--accent-ink);
-font-size: 17px;
-font-weight: 600;
-padding: 18px 40px;
-width: 100%;
-max-width: 320px;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 10px;
+appearance: none; border: none; border-radius: 999px;
+background: var(--accent); color: var(--accent-ink);
+font-size: 17px; font-weight: 600; padding: 18px 40px;
+width: 100%; max-width: 320px; cursor: pointer;
+display: flex; align-items: center; justify-content: center; gap: 10px;
 }
-.primary-btn:focus-visible, .icon-btn:focus-visible, .stepper button:focus-visible, .text-btn:focus-visible {
-outline: 2px solid var(--accent);
-outline-offset: 3px;
-}
+.primary-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .primary-btn:disabled { opacity: 0.45; cursor: not-allowed; }
-.primary-btn.recording { background: var(--danger); }
-
 .primary-btn.record-btn {
-background: var(--bg-raised);
-color: var(--ink);
-border: 1px solid var(--line);
+background: var(--bg-raised); color: var(--ink); border: 1px solid var(--line);
 }
 .primary-btn.record-btn.recording {
-background: var(--danger);
-color: var(--accent-ink);
-border-color: var(--danger);
+background: var(--danger); color: var(--accent-ink); border-color: var(--danger);
 animation: pulse 1.6s ease-in-out infinite;
 }
-@media (prefers-reduced-motion: reduce) {
-.primary-btn.record-btn.recording { animation: none; }
-}
-@keyframes pulse {
-0%, 100% { opacity: 1; }
-50% { opacity: 0.7; }
-}
-
-/* ダウンロードボタン */
-.primary-btn.download-btn {
-background: var(--bg-raised);
-color: var(--accent);
-border: 1.5px solid var(--accent);
-font-size: 15px;
-padding: 14px 32px;
-}
-.primary-btn.download-btn:hover {
-background: var(--accent);
-color: var(--accent-ink);
-}
-
+@media (prefers-reduced-motion: reduce) { .primary-btn.record-btn.recording { animation: none; } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 .secondary-row {
-display: flex;
-align-items: center;
-justify-content: center;
-flex-wrap: wrap;
-gap: 18px;
+display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 18px;
 }
 .text-btn {
-appearance: none;
-background: none;
-border: none;
-color: var(--ink-soft);
-font-size: 14px;
-cursor: pointer;
-padding: 6px 2px;
-text-decoration: underline;
-text-underline-offset: 3px;
+appearance: none; background: none; border: none;
+color: var(--ink-soft); font-size: 14px; cursor: pointer;
+padding: 6px 2px; text-decoration: underline; text-underline-offset: 3px;
 }
 .text-btn:disabled { opacity: 0.45; cursor: not-allowed; }
-
 .card {
-width: 100%;
-background: var(--bg-raised);
-border: 1px solid var(--line);
-border-radius: 20px;
-padding: 20px 22px;
+width: 100%; background: var(--bg-raised);
+border: 1px solid var(--line); border-radius: 20px; padding: 20px 22px;
 }
-.card h2 {
-font-size: 12px;
-margin: 0 0 10px;
-color: var(--ink-soft);
-font-weight: 600;
-}
+.card h2 { font-size: 12px; margin: 0 0 10px; color: var(--ink-soft); font-weight: 600; }
 .affirmation-text {
-width: 100%;
-resize: vertical;
-min-height: 96px;
-border: none;
-background: transparent;
-color: var(--ink);
-font-size: 16px;
-line-height: 1.7;
-font-family: inherit;
-padding: 0;
+width: 100%; resize: vertical; min-height: 96px;
+border: none; background: transparent; color: var(--ink);
+font-size: 16px; line-height: 1.7; font-family: inherit; padding: 0;
 }
 .affirmation-text:focus-visible { outline: none; }
-
-.stepper {
-display: flex;
-align-items: center;
-gap: 14px;
-margin-top: 4px;
-}
+.stepper { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
 .stepper button {
-width: 34px;
-height: 34px;
-border-radius: 50%;
-border: 1px solid var(--line);
-background: var(--bg);
-color: var(--ink);
-font-size: 18px;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
+width: 34px; height: 34px; border-radius: 50%;
+border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+font-size: 18px; cursor: pointer;
+display: flex; align-items: center; justify-content: center;
 }
 .stepper span { font-size: 15px; min-width: 70px; text-align: center; }
 
-.empty-state {
-text-align: center;
-color: var(--ink-soft);
-font-size: 14px;
-line-height: 1.7;
+/* 音声リスト */
+.audio-list { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.audio-item {
+display: flex; align-items: center; gap: 10px;
+padding: 12px 14px; border-radius: 12px;
+border: 1.5px solid var(--line); background: var(--bg);
+cursor: pointer; transition: border-color 0.15s, background 0.15s;
 }
+.audio-item.selected {
+border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--bg));
+}
+.audio-item-info { flex: 1; min-width: 0; }
+.audio-item-name {
+font-size: 14px; font-weight: 600; color: var(--ink);
+white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.audio-item-meta { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+.audio-item-actions { display: flex; gap: 6px; flex-shrink: 0; }
+.icon-btn {
+appearance: none; border: none; background: none;
+color: var(--ink-soft); font-size: 16px; cursor: pointer;
+padding: 4px 6px; border-radius: 6px;
+}
+.icon-btn:hover { background: var(--line); color: var(--ink); }
+.icon-btn.danger:hover { background: var(--danger); color: #fff; }
+.audio-empty { font-size: 14px; color: var(--ink-soft); text-align: center; padding: 8px 0; }
 
+.empty-state { text-align: center; color: var(--ink-soft); font-size: 14px; line-height: 1.7; }
 .sr-only {
-position: absolute;
-width: 1px; height: 1px;
-padding: 0; margin: -1px;
-overflow: hidden;
-clip: rect(0,0,0,0);
-white-space: nowrap; border: 0;
+position: absolute; width: 1px; height: 1px;
+padding: 0; margin: -1px; overflow: hidden;
+clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
 </style>
 </head>
@@ -289,17 +195,19 @@ stroke-dasharray="276.5" stroke-dashoffset="276.5"></circle>
 <span id="micBtnLabel">🎙 その場で録音する</span>
 </button>
 
-<!-- ダウンロードボタン（音声読み込み後に表示） -->
-<button class="primary-btn download-btn" id="downloadBtn" style="display:none;">
-⬇ 録音をダウンロード
-</button>
-
 <div class="secondary-row">
 <button class="text-btn" id="resetBtn" style="display:none;">回数をリセット</button>
-<button class="text-btn" id="fileBtn">音声ファイルから選ぶ</button>
+<button class="text-btn" id="fileBtn">音声ファイルを追加</button>
 <input type="file" id="fileInput" accept="audio/*,.m4a,audio/mp4,audio/x-m4a" class="sr-only">
 </div>
-<p class="empty-state" id="howTo">「その場で録音する」をタップしてマイクで宣言を録音するか、あらかじめ録音した音声ファイルを選んでください。</p>
+
+<!-- 保存済み音声リスト -->
+<div class="card" id="audioListCard" style="display:none;">
+<h2>保存済み音声</h2>
+<div class="audio-list" id="audioList"></div>
+</div>
+
+<p class="empty-state" id="howTo">「その場で録音する」をタップしてマイクで宣言を録音するか、音声ファイルを追加してください。音声は端末に自動保存されます。</p>
 
 <div class="card">
 <h2>ことば</h2>
@@ -308,7 +216,7 @@ stroke-dasharray="276.5" stroke-dashoffset="276.5"></circle>
 私は、子供たちが誇れる父親です。</textarea>
 </div>
 
-<div class="card" id="settingsCard">
+<div class="card">
 <h2>くり返す回数</h2>
 <div class="stepper">
 <button id="decBtn" aria-label="回数を減らす">−</button>
@@ -322,19 +230,18 @@ stroke-dasharray="276.5" stroke-dashoffset="276.5"></circle>
 
 <script>
 (function () {
-const DB_NAME = 'affirmation_db';
+const DB_NAME = 'affirmation_db_v2';
 const DB_VERSION = 1;
-const STORE_NAME = 'audio';
-const AUDIO_KEY = 'main';
+const STORE_NAME = 'audio_files';
 const TARGET_KEY = 'affirmation_target_v1';
 const TEXT_KEY = 'affirmation_text_v1';
+const SELECTED_KEY = 'affirmation_selected_id';
 
 const playBtn = document.getElementById('playBtn');
 const playBtnLabel = document.getElementById('playBtnLabel');
 const micBtn = document.getElementById('micBtn');
 const micBtnLabel = document.getElementById('micBtnLabel');
 const fileBtn = document.getElementById('fileBtn');
-const downloadBtn = document.getElementById('downloadBtn');
 const resetBtn = document.getElementById('resetBtn');
 const countDisplay = document.getElementById('countDisplay');
 const targetDisplay = document.getElementById('targetDisplay');
@@ -347,64 +254,78 @@ const incBtn = document.getElementById('incBtn');
 const targetLabel = document.getElementById('targetLabel');
 const fileInput = document.getElementById('fileInput');
 const howTo = document.getElementById('howTo');
+const audioListCard = document.getElementById('audioListCard');
+const audioList = document.getElementById('audioList');
 
 const RING_CIRCUMFERENCE = 276.5;
-
 let target = 10;
 let count = 0;
 let isPlaying = false;
 let stopRequested = false;
-let currentBlob = null; // ダウンロード用にblobを保持
-
-// ---- IndexedDB ----
+let selectedId = null;
+let currentObjectUrl = null;
 let db = null;
 
+// ---- IndexedDB ----
 function openDB() {
 return new Promise(function (resolve, reject) {
 const req = indexedDB.open(DB_NAME, DB_VERSION);
 req.onupgradeneeded = function (e) {
-e.target.result.createObjectStore(STORE_NAME);
+const store = e.target.result.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
+store.createIndex('createdAt', 'createdAt');
 };
 req.onsuccess = function (e) { resolve(e.target.result); };
 req.onerror = function () { reject(req.error); };
 });
 }
 
-function saveAudioBlob(blob) {
+function dbGetAll() {
 return new Promise(function (resolve, reject) {
-if (!db) { reject(new Error('DB not ready')); return; }
-const tx = db.transaction(STORE_NAME, 'readwrite');
-tx.objectStore(STORE_NAME).put(blob, AUDIO_KEY);
-tx.oncomplete = function () { resolve(); };
-tx.onerror = function () { reject(tx.error); };
+if (!db) { resolve([]); return; }
+const tx = db.transaction(STORE_NAME, 'readonly');
+const req = tx.objectStore(STORE_NAME).getAll();
+req.onsuccess = function () { resolve(req.result || []); };
+req.onerror = function () { reject(req.error); };
 });
 }
 
-function loadAudioBlob() {
+function dbAdd(record) {
+return new Promise(function (resolve, reject) {
+if (!db) { reject(new Error('DB not ready')); return; }
+const tx = db.transaction(STORE_NAME, 'readwrite');
+const req = tx.objectStore(STORE_NAME).add(record);
+req.onsuccess = function () { resolve(req.result); };
+req.onerror = function () { reject(req.error); };
+});
+}
+
+function dbGet(id) {
 return new Promise(function (resolve, reject) {
 if (!db) { resolve(null); return; }
 const tx = db.transaction(STORE_NAME, 'readonly');
-const req = tx.objectStore(STORE_NAME).get(AUDIO_KEY);
+const req = tx.objectStore(STORE_NAME).get(id);
 req.onsuccess = function () { resolve(req.result || null); };
 req.onerror = function () { reject(req.error); };
 });
 }
 
-// ---- localStorage helpers (テキスト・設定のみ) ----
-function safeGet(key) {
-try { return localStorage.getItem(key); } catch (e) { return null; }
+function dbDelete(id) {
+return new Promise(function (resolve, reject) {
+if (!db) { reject(new Error('DB not ready')); return; }
+const tx = db.transaction(STORE_NAME, 'readwrite');
+const req = tx.objectStore(STORE_NAME).delete(id);
+req.onsuccess = function () { resolve(); };
+req.onerror = function () { reject(req.error); };
+});
 }
-function safeSet(key, value) {
-try { localStorage.setItem(key, value); return true; } catch (e) { return false; }
-}
+
+// ---- localStorage ----
+function safeGet(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+function safeSet(key, value) { try { localStorage.setItem(key, value); return true; } catch (e) { return false; } }
 
 // ---- 初期化 ----
 async function init() {
-try {
-db = await openDB();
-} catch (e) {
-db = null;
-}
+try { db = await openDB(); } catch (e) { db = null; }
 
 const savedTarget = safeGet(TARGET_KEY);
 if (savedTarget) target = parseInt(savedTarget, 10) || 10;
@@ -414,23 +335,10 @@ targetLabel.textContent = target + ' 回';
 const savedText = safeGet(TEXT_KEY);
 if (savedText) affirmationText.value = savedText;
 
-try {
-const blob = await loadAudioBlob();
-if (blob) {
-currentBlob = blob;
-const url = URL.createObjectURL(blob);
-player.src = url;
-playBtn.disabled = false;
-statusLabel.textContent = '音声を読み込み済みです';
-resetBtn.style.display = 'inline';
-howTo.style.display = 'none';
-fileBtn.textContent = '音声を選びなおす';
-downloadBtn.style.display = 'flex';
-}
-} catch (e) {
-statusLabel.textContent = 'まだ音声がありません';
-}
+const savedId = safeGet(SELECTED_KEY);
+if (savedId) selectedId = parseInt(savedId, 10) || null;
 
+await refreshList();
 updateRing();
 }
 
@@ -438,160 +346,203 @@ affirmationText.addEventListener('input', function () {
 safeSet(TEXT_KEY, affirmationText.value);
 });
 
-function updateRing() {
-const ratio = Math.min(count / target, 1);
-const offset = RING_CIRCUMFERENCE * (1 - ratio);
-ring.setAttribute('stroke-dashoffset', offset);
-countDisplay.textContent = count;
+// ---- 音声リスト描画 ----
+async function refreshList() {
+const items = await dbGetAll();
+audioList.innerHTML = '';
+
+if (items.length === 0) {
+audioListCard.style.display = 'none';
+howTo.style.display = '';
+playBtn.disabled = true;
+return;
 }
 
-function resetCount() {
+audioListCard.style.display = '';
+howTo.style.display = 'none';
+
+// 選択IDが存在するか確認
+const ids = items.map(function (i) { return i.id; });
+if (selectedId && !ids.includes(selectedId)) selectedId = null;
+if (!selectedId && items.length > 0) selectedId = items[items.length - 1].id;
+safeSet(SELECTED_KEY, String(selectedId));
+
+items.forEach(function (item) {
+const el = document.createElement('div');
+el.className = 'audio-item' + (item.id === selectedId ? ' selected' : '');
+el.innerHTML =
+'<div class="audio-item-info">' +
+  '<div class="audio-item-name">' + escHtml(item.name) + '</div>' +
+  '<div class="audio-item-meta">' + formatDate(item.createdAt) + '</div>' +
+'</div>' +
+'<div class="audio-item-actions">' +
+  '<button class="icon-btn" data-id="' + item.id + '" data-action="download" title="ダウンロード">⬇</button>' +
+  '<button class="icon-btn danger" data-id="' + item.id + '" data-action="delete" title="削除">🗑</button>' +
+'</div>';
+
+// タップで選択
+el.addEventListener('click', async function (e) {
+if (e.target.closest('[data-action]')) return;
+await selectAudio(item.id);
+});
+
+// ボタン
+el.querySelectorAll('[data-action]').forEach(function (btn) {
+btn.addEventListener('click', async function (e) {
+e.stopPropagation();
+const action = btn.dataset.action;
+const id = parseInt(btn.dataset.id, 10);
+if (action === 'download') await downloadAudio(id);
+if (action === 'delete') await deleteAudio(id);
+});
+});
+
+audioList.appendChild(el);
+});
+
+// 選択中の音声を再生ソースにセット
+await loadSelectedAudio();
+}
+
+async function selectAudio(id) {
+selectedId = id;
+safeSet(SELECTED_KEY, String(id));
+await refreshList();
+statusLabel.textContent = '音声を切り替えました';
+resetBtn.style.display = 'inline';
 count = 0;
 updateRing();
-statusLabel.textContent = '録音ずみです';
-resetBtn.style.display = 'none';
 }
 
-decBtn.addEventListener('click', function () {
-target = Math.max(3, target - 1);
-targetDisplay.textContent = '/ ' + target;
-targetLabel.textContent = target + ' 回';
-safeSet(TARGET_KEY, String(target));
-if (!isPlaying) { count = Math.min(count, target); updateRing(); }
-});
-incBtn.addEventListener('click', function () {
-target = Math.min(30, target + 1);
-targetDisplay.textContent = '/ ' + target;
-targetLabel.textContent = target + ' 回';
-safeSet(TARGET_KEY, String(target));
-updateRing();
-});
-
-async function loadAudioFromBlob(blob, sourceLabel) {
-statusLabel.textContent = '保存しています…';
+async function loadSelectedAudio() {
+if (!selectedId) { playBtn.disabled = true; return; }
 try {
-await saveAudioBlob(blob);
-currentBlob = blob;
-const url = URL.createObjectURL(blob);
-player.src = url;
+const item = await dbGet(selectedId);
+if (!item) { playBtn.disabled = true; return; }
+if (currentObjectUrl) URL.revokeObjectURL(currentObjectUrl);
+currentObjectUrl = URL.createObjectURL(item.blob);
+player.src = currentObjectUrl;
 playBtn.disabled = false;
-statusLabel.textContent = sourceLabel + 'を保存しました';
-howTo.style.display = 'none';
-fileBtn.textContent = '音声を選びなおす';
-downloadBtn.style.display = 'flex';
-resetCount();
 } catch (e) {
-// IndexedDB失敗時はObjectURLで一時再生のみ（保存なし）
-currentBlob = blob;
-const url = URL.createObjectURL(blob);
-player.src = url;
-playBtn.disabled = false;
-statusLabel.textContent = sourceLabel + '（今回のみ・保存できませんでした）';
-howTo.style.display = 'none';
-downloadBtn.style.display = 'flex';
-resetCount();
+playBtn.disabled = true;
 }
 }
 
-// ---- ダウンロード ----
-downloadBtn.addEventListener('click', function () {
-if (!currentBlob) return;
-const ext = currentBlob.type.includes('mp4') ? 'm4a'
-: currentBlob.type.includes('ogg') ? 'ogg'
-: 'webm';
-const url = URL.createObjectURL(currentBlob);
+async function downloadAudio(id) {
+const item = await dbGet(id);
+if (!item) return;
+const ext = item.mimeType.includes('mp4') ? 'm4a'
+: item.mimeType.includes('ogg') ? 'ogg' : 'webm';
+const url = URL.createObjectURL(item.blob);
 const a = document.createElement('a');
-a.href = url;
-a.download = '朝の宣言_' + new Date().toISOString().slice(0, 10) + '.' + ext;
-document.body.appendChild(a);
-a.click();
-document.body.removeChild(a);
+a.href = url; a.download = item.name + '.' + ext;
+document.body.appendChild(a); a.click(); document.body.removeChild(a);
 setTimeout(function () { URL.revokeObjectURL(url); }, 10000);
 statusLabel.textContent = 'ダウンロードを開始しました';
-});
+}
 
-// ---- File select ----
+async function deleteAudio(id) {
+if (!confirm('この音声を削除しますか？')) return;
+await dbDelete(id);
+if (selectedId === id) {
+selectedId = null;
+if (currentObjectUrl) { URL.revokeObjectURL(currentObjectUrl); currentObjectUrl = null; }
+player.src = '';
+}
+if (isPlaying) {
+stopRequested = true;
+player.pause();
+setPlayingUI(false);
+}
+statusLabel.textContent = '削除しました';
+await refreshList();
+}
+
+// ---- 音声追加 ----
+async function addAudioBlob(blob, name) {
+statusLabel.textContent = '保存しています…';
+const record = {
+blob: blob,
+mimeType: blob.type || 'audio/webm',
+name: name,
+createdAt: new Date().toISOString()
+};
+try {
+const newId = await dbAdd(record);
+selectedId = newId;
+safeSet(SELECTED_KEY, String(newId));
+statusLabel.textContent = '「' + name + '」を保存しました';
+count = 0;
+updateRing();
+await refreshList();
+resetBtn.style.display = 'inline';
+} catch (e) {
+// フォールバック：今回のみ再生
+if (currentObjectUrl) URL.revokeObjectURL(currentObjectUrl);
+currentObjectUrl = URL.createObjectURL(blob);
+player.src = currentObjectUrl;
+playBtn.disabled = false;
+statusLabel.textContent = '保存できませんでした（今回のみ再生可能）';
+}
+}
+
+// ---- ファイル選択 ----
 fileBtn.addEventListener('click', function () {
 if (isPlaying || isRecording) return;
 fileInput.click();
 });
-
 fileInput.addEventListener('change', function () {
 const file = fileInput.files && fileInput.files[0];
 if (!file) return;
-loadAudioFromBlob(file, '音声ファイル');
+const name = file.name.replace(/\.[^.]+$/, '') || ('ファイル ' + formatDateShort(new Date()));
+addAudioBlob(file, name);
+fileInput.value = '';
 });
 
-// ---- In-app mic recording ----
-let mediaRecorder = null;
-let mediaStream = null;
-let recordedChunks = [];
-let isRecording = false;
-let recordTimerId = null;
-let recordStartedAt = 0;
+// ---- 録音 ----
+let mediaRecorder = null, mediaStream = null, recordedChunks = [];
+let isRecording = false, recordTimerId = null, recordStartedAt = 0;
 
 const canRecord = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
-if (!canRecord) {
-micBtn.disabled = true;
-micBtnLabel.textContent = 'この端末では録音できません';
-}
+if (!canRecord) { micBtn.disabled = true; micBtnLabel.textContent = 'この端末では録音できません'; }
 
 function pickMimeType() {
 const candidates = ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus'];
-for (const type of candidates) {
-if (window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(type)) {
-return type;
-}
+for (const t of candidates) {
+if (window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) return t;
 }
 return '';
 }
 
 function formatElapsed(ms) {
 const s = Math.floor(ms / 1000);
-const mm = String(Math.floor(s / 60)).padStart(2, '0');
-const ss = String(s % 60).padStart(2, '0');
-return mm + ':' + ss;
-}
-
-function stopRecordTimer() {
-if (recordTimerId) { clearInterval(recordTimerId); recordTimerId = null; }
+return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
 }
 
 async function startRecording() {
 if (isPlaying) return;
-try {
-mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-} catch (e) {
-statusLabel.textContent = 'マイクを使用できませんでした。設定でマイクの許可を確認するか、音声ファイルを選んでください。';
-return;
-}
+try { mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true }); }
+catch (e) { statusLabel.textContent = 'マイクを使用できませんでした。'; return; }
 recordedChunks = [];
 const mimeType = pickMimeType();
-try {
-mediaRecorder = mimeType ? new MediaRecorder(mediaStream, { mimeType }) : new MediaRecorder(mediaStream);
-} catch (e) {
-mediaRecorder = new MediaRecorder(mediaStream);
-}
+try { mediaRecorder = mimeType ? new MediaRecorder(mediaStream, { mimeType }) : new MediaRecorder(mediaStream); }
+catch (e) { mediaRecorder = new MediaRecorder(mediaStream); }
 
 mediaRecorder.addEventListener('dataavailable', function (e) {
 if (e.data && e.data.size > 0) recordedChunks.push(e.data);
 });
-
 mediaRecorder.addEventListener('stop', function () {
 mediaStream.getTracks().forEach(function (t) { t.stop(); });
 mediaStream = null;
-stopRecordTimer();
+if (recordTimerId) { clearInterval(recordTimerId); recordTimerId = null; }
 isRecording = false;
 micBtn.classList.remove('recording');
 micBtnLabel.textContent = '🎙 その場で録音する';
 fileBtn.disabled = false;
-
-if (recordedChunks.length === 0) {
-statusLabel.textContent = '録音されませんでした';
-return;
-}
+if (recordedChunks.length === 0) { statusLabel.textContent = '録音されませんでした'; return; }
 const blob = new Blob(recordedChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
-loadAudioFromBlob(blob, '録音した音声');
+const name = '録音 ' + formatDateShort(new Date());
+addAudioBlob(blob, name);
 });
 
 mediaRecorder.start();
@@ -601,133 +552,122 @@ micBtn.classList.add('recording');
 micBtnLabel.textContent = '■ 停止する（録音中… 00:00）';
 fileBtn.disabled = true;
 statusLabel.textContent = '録音中です。宣言を読み上げてください。';
-
 recordTimerId = setInterval(function () {
 micBtnLabel.textContent = '■ 停止する（録音中… ' + formatElapsed(Date.now() - recordStartedAt) + '）';
 }, 500);
 }
 
 function stopRecording() {
-if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-mediaRecorder.stop();
-}
+if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
 }
 
 micBtn.addEventListener('click', function () {
 if (!canRecord) return;
-if (isRecording) {
-stopRecording();
-} else {
-startRecording();
-}
+if (isRecording) stopRecording(); else startRecording();
 });
+
+// ---- カウンター ----
+function updateRing() {
+const ratio = Math.min(count / target, 1);
+ring.setAttribute('stroke-dashoffset', RING_CIRCUMFERENCE * (1 - ratio));
+countDisplay.textContent = count;
+}
+
+function resetCount() {
+count = 0; updateRing();
+statusLabel.textContent = '音声が選択されています';
+resetBtn.style.display = 'none';
+}
+
+decBtn.addEventListener('click', function () {
+target = Math.max(3, target - 1);
+targetDisplay.textContent = '/ ' + target; targetLabel.textContent = target + ' 回';
+safeSet(TARGET_KEY, String(target));
+if (!isPlaying) { count = Math.min(count, target); updateRing(); }
+});
+incBtn.addEventListener('click', function () {
+target = Math.min(30, target + 1);
+targetDisplay.textContent = '/ ' + target; targetLabel.textContent = target + ' 回';
+safeSet(TARGET_KEY, String(target)); updateRing();
+});
+resetBtn.addEventListener('click', resetCount);
 
 // ---- Wake Lock ----
 let wakeLock = null;
-
 async function requestWakeLock() {
 if (!('wakeLock' in navigator)) return;
-try {
-wakeLock = await navigator.wakeLock.request('screen');
-wakeLock.addEventListener('release', function () { wakeLock = null; });
-} catch (e) {
-wakeLock = null;
+try { wakeLock = await navigator.wakeLock.request('screen'); wakeLock.addEventListener('release', function () { wakeLock = null; }); }
+catch (e) { wakeLock = null; }
 }
-}
-
-function releaseWakeLock() {
-if (wakeLock) {
-wakeLock.release().catch(function () {});
-wakeLock = null;
-}
-}
-
+function releaseWakeLock() { if (wakeLock) { wakeLock.release().catch(function () {}); wakeLock = null; } }
 document.addEventListener('visibilitychange', function () {
-if (document.visibilityState === 'visible' && isPlaying && !wakeLock) {
-requestWakeLock();
-}
+if (document.visibilityState === 'visible' && isPlaying && !wakeLock) requestWakeLock();
 });
 
 // ---- Media Session ----
 function setupMediaSession() {
 if (!('mediaSession' in navigator)) return;
-navigator.mediaSession.metadata = new MediaMetadata({
-title: '朝の宣言',
-artist: '朝の散歩アファメーション',
-album: '朝の宣言'
-});
-navigator.mediaSession.setActionHandler('play', function () {
-if (!isPlaying) playBtn.click();
-});
-navigator.mediaSession.setActionHandler('pause', function () {
-if (isPlaying) playBtn.click();
-});
-navigator.mediaSession.setActionHandler('stop', function () {
-if (isPlaying) playBtn.click();
-});
+navigator.mediaSession.metadata = new MediaMetadata({ title: '朝の宣言', artist: '朝の散歩アファメーション' });
+navigator.mediaSession.setActionHandler('play', function () { if (!isPlaying) playBtn.click(); });
+navigator.mediaSession.setActionHandler('pause', function () { if (isPlaying) playBtn.click(); });
+navigator.mediaSession.setActionHandler('stop', function () { if (isPlaying) playBtn.click(); });
 }
-
 function updateMediaSessionState() {
-if ('mediaSession' in navigator) {
-navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
-}
+if ('mediaSession' in navigator) navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
 }
 
-// ---- Playback ----
+// ---- 再生 ----
 function setPlayingUI(playing) {
 isPlaying = playing;
 playBtnLabel.textContent = playing ? '止める' : (count > 0 && count < target ? '再開する' : '再生する');
 micBtn.disabled = playing || !canRecord;
 fileBtn.disabled = playing;
-decBtn.disabled = playing;
-incBtn.disabled = playing;
+decBtn.disabled = playing; incBtn.disabled = playing;
 updateMediaSessionState();
-if (playing) {
-requestWakeLock();
-} else {
-releaseWakeLock();
-}
+if (playing) requestWakeLock(); else releaseWakeLock();
 }
 
 playBtn.addEventListener('click', function () {
 if (isPlaying) {
-stopRequested = true;
-player.pause();
-setPlayingUI(false);
-statusLabel.textContent = '一時停止しました';
-return;
+stopRequested = true; player.pause(); setPlayingUI(false);
+statusLabel.textContent = '一時停止しました'; return;
 }
 if (count >= target) resetCount();
-stopRequested = false;
-setupMediaSession();
-setPlayingUI(true);
-playNext();
+stopRequested = false; setupMediaSession(); setPlayingUI(true); playNext();
 });
 
 function playNext() {
 if (stopRequested) return;
 if (count >= target) {
-setPlayingUI(false);
-statusLabel.textContent = '今日の宣言、完了です';
-resetBtn.style.display = 'inline';
-return;
+setPlayingUI(false); statusLabel.textContent = '今日の宣言、完了です';
+resetBtn.style.display = 'inline'; return;
 }
 statusLabel.textContent = (count + 1) + ' 回目';
 player.currentTime = 0;
-player.play().catch(function () {
-setPlayingUI(false);
-statusLabel.textContent = '再生できませんでした';
-});
+player.play().catch(function () { setPlayingUI(false); statusLabel.textContent = '再生できませんでした'; });
 }
 
 player.addEventListener('ended', function () {
-count += 1;
-updateRing();
+count += 1; updateRing();
 if (stopRequested) return;
 setTimeout(playNext, 500);
 });
 
-resetBtn.addEventListener('click', resetCount);
+// ---- ユーティリティ ----
+function escHtml(s) {
+return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function formatDateShort(d) {
+return d.getFullYear() + '-' +
+String(d.getMonth() + 1).padStart(2, '0') + '-' +
+String(d.getDate()).padStart(2, '0') + ' ' +
+String(d.getHours()).padStart(2, '0') + ':' +
+String(d.getMinutes()).padStart(2, '0');
+}
+function formatDate(iso) {
+if (!iso) return '';
+try { return formatDateShort(new Date(iso)); } catch (e) { return iso; }
+}
 
 // ---- Service worker ----
 if ('serviceWorker' in navigator) {
